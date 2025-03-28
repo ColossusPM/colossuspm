@@ -1,17 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatabaseService, Project } from '../../services/database.service';
 import { Snowflake } from '@theinternetfolks/snowflake';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-index',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css',
 })
 export class IndexComponent {
-  constructor(private router: Router) {}
+  projects: Project[] = [];
+
+  constructor(private _router: Router, private _databaseService: DatabaseService) {}
+
+  async ngOnInit() {
+    this.projects = await this._databaseService.getAllProjects();
+  }
 
   createProject() {
-    this.router.navigate(['/projects', Snowflake.generate()]);
+    const newId = Snowflake.generate();
+    this._router.navigate(['/projects', newId]);
+  }
+
+  openProject(project: Project) {
+    this._router.navigate(['/projects', project.id]);
   }
 }

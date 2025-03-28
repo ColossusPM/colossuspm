@@ -5,8 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { DatabaseService, Project } from '../../services/database.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-project',
@@ -20,7 +20,8 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _databaseService: DatabaseService
+    private _databaseService: DatabaseService,
+    private _router: Router
   ) {}
 
   async ngOnInit() {
@@ -62,6 +63,6 @@ export class ProjectComponent implements OnInit {
       createdAt: new Date(),
     });
 
-    alert('Project saved!');
+    this._router.navigate(['/']);
   }
 }
