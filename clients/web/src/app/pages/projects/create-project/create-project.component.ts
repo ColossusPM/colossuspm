@@ -9,11 +9,14 @@ import {
 import { Router } from '@angular/router';
 import { DatabaseService } from '../../../services/database.service';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-create-project',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ButtonModule, CardModule, CommonModule, InputTextModule, ReactiveFormsModule],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css',
 })

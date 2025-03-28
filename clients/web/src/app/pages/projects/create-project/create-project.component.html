@@ -1,40 +1,49 @@
-<div class="card shadow-sm rounded-4">
-  <div class="card-body">
-    <h2 class="card-title mb-4">Create New Project</h2>
+<p-card class="border-round-xl">
+  <ng-template pTemplate="header">
+    <h2 class="text-2xl font-semibold mb-3">Create New Project</h2>
+  </ng-template>
+  
+  <form [formGroup]="form" (ngSubmit)="create()" class="p-fluid">
+    <div class="field mb-4">
+      <label for="name" class="block mb-2 font-medium">Project Name</label>
+      <input
+        pInputText
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Enter project name"
+        [ngClass]="{
+          'p-invalid': form.get('name')?.invalid && form.get('name')?.touched
+        }"
+      />
+      <small
+        *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+        class="p-error"
+      >
+        Name is required.
+      </small>
+    </div>
 
-    <form [formGroup]="form" (ngSubmit)="create()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Project Name</label>
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          formControlName="name"
-          placeholder="Enter project name"
-          required
-        />
-        <div
-          *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
-          class="text-danger small"
-        >
-          Name is required.
-        </div>
-      </div>
+    <div class="field mb-4">
+      <label for="description" class="block mb-2 font-medium"
+        >Description</label
+      >
+      <textarea
+        pInputTextarea
+        id="description"
+        rows="4"
+        formControlName="description"
+        placeholder="Enter description"
+      ></textarea>
+    </div>
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea
-          id="description"
-          class="form-control"
-          rows="4"
-          formControlName="description"
-          placeholder="Enter description"
-        ></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="form.invalid">
-        <i class="bi bi-plus-circle"></i> Create Project
-      </button>
-    </form>
-  </div>
-</div>
+    <button
+      pButton
+      type="submit"
+      label="Create Project"
+      icon="pi pi-plus-circle"
+      class="p-button-success w-full"
+      [disabled]="form.invalid"
+    ></button>
+  </form>
+</p-card>
