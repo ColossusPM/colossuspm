@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-index',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './view-projects.component.html',
   styleUrl: './view-projects.component.css',
@@ -26,6 +27,6 @@ export class ViewProjectsComponent {
   }
 
   openProject(project: Project) {
-    this._router.navigate(['/projects', project.id, 'settings']);
+    this._router.navigate(['/projects', project.id, 'view']);
   }
 }
