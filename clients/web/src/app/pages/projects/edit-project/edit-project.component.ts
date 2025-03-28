@@ -6,17 +6,20 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatabaseService } from '../../services/database.service';
+import { DatabaseService } from '../../../services/database.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-project',
-  imports: [ReactiveFormsModule],
-  templateUrl: './project.component.html',
-  styleUrl: './project.component.css',
+  selector: 'app-edit-project',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './edit-project.component.html',
+  styleUrl: './edit-project.component.css',
 })
-export class ProjectComponent implements OnInit {
+export class EditProjectComponent implements OnInit {
   form!: FormGroup;
   projectId!: string;
+  projectFound: boolean = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -27,7 +30,6 @@ export class ProjectComponent implements OnInit {
   async ngOnInit() {
     this.projectId = this._route.snapshot.paramMap.get('id')!;
 
-    // Initialize form manually
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl(''),
@@ -37,20 +39,18 @@ export class ProjectComponent implements OnInit {
       this.projectId
     );
 
-    if (existingProject) {
-      this.form.setValue({
-        name: existingProject.name,
-        description: existingProject.description || '',
-      });
-    } else {
-      // Create empty project if not found
-      await this._databaseService.createProject({
-        id: this.projectId,
-        name: '',
-        description: '',
-        createdAt: new Date(),
-      });
+    if (!existingProject) {
+      // If project does not exist, redirect to home
+      this._router.navigate(['/']);
+      return;
     }
+
+    this.projectFound = true;
+
+    this.form.setValue({
+      name: existingProject.name,
+      description: existingProject.description || '',
+    });
   }
 
   async save() {
@@ -58,9 +58,9 @@ export class ProjectComponent implements OnInit {
 
     await this._databaseService.updateProject({
       id: this.projectId,
-      name: this.form.value.name,
-      description: this.form.value.description,
-      createdAt: new Date(),
+      name: this.form.value.name!,
+      description: this.form.value.description || '',
+      createdAt: new Date(), // You can keep createdAt immutable if you want
     });
 
     this._router.navigate(['/']);
