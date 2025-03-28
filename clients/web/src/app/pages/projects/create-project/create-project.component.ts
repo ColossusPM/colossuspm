@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DatabaseService } from '../../../services/database.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-project',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css',
 })

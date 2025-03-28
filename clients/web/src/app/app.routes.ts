@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { CreateProjectComponent } from './pages/projects/create-project/create-project.component';
-import { EditProjectComponent } from './pages/projects/edit-project/edit-project.component';
+import { ProjectSettingsComponent } from './pages/projects/project-settings/project-settings.component';
+import { ViewProjectsComponent } from './pages/view-projects/view-projects.component';
 
 export const routes: Routes = [
   {
@@ -10,13 +11,18 @@ export const routes: Routes = [
     component: IndexComponent,
   },
   {
+    path: 'projects',
+    title: 'Projects - ColossusPM',
+    component: ViewProjectsComponent,
+  },
+  {
     path: 'projects/create',
     title: 'New Project - ColossusPM',
     component: CreateProjectComponent,
   },
   {
-    path: 'projects/:id/edit',
+    path: 'projects/:id/settings',
     title: 'Edit Project - ColossusPM',
-    component: EditProjectComponent,
+    component: ProjectSettingsComponent,
   },
 ];

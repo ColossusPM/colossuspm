@@ -1,8 +1,8 @@
 <div class="card shadow-sm rounded-4">
   <div class="card-body">
-    <h2 class="card-title mb-4">Create New Project</h2>
+    <h2 class="card-title mb-4">Edit Project</h2>
 
-    <form [formGroup]="form" (ngSubmit)="create()">
+    <form *ngIf="projectFound" [formGroup]="form" (ngSubmit)="save()">
       <div class="mb-3">
         <label for="name" class="form-label">Project Name</label>
         <input
@@ -32,8 +32,8 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="form.invalid">
-        <i class="bi bi-plus-circle"></i> Create Project
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        <i class="bi bi-save"></i> Save Project
       </button>
     </form>
   </div>

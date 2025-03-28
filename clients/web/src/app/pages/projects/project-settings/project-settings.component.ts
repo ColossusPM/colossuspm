@@ -10,13 +10,13 @@ import { DatabaseService } from '../../../services/database.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-project',
+  selector: 'app-project-settings',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './edit-project.component.html',
-  styleUrl: './edit-project.component.css',
+  templateUrl: './project-settings.component.html',
+  styleUrl: './project-settings.component.css',
 })
-export class EditProjectComponent implements OnInit {
+export class ProjectSettingsComponent implements OnInit {
   form!: FormGroup;
   projectId!: string;
   projectFound: boolean = false;
