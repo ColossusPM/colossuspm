@@ -1,5 +1,5 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Snowflake } from '@theinternetfolks/snowflake';
 import {
   FormControl,
   FormGroup,
@@ -7,16 +7,24 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DatabaseService } from '../../../services/database.service';
-import { CommonModule } from '@angular/common';
+import { Snowflake } from '@theinternetfolks/snowflake';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
+import { DatabaseService } from '../../../services/database.service';
 
 @Component({
   selector: 'app-create-project',
   standalone: true,
-  imports: [ButtonModule, CardModule, CommonModule, InputTextModule, ReactiveFormsModule],
+  imports: [
+    ButtonModule,
+    CardModule,
+    CommonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    TextareaModule,
+  ],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css',
 })
