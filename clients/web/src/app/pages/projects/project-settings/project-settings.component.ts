@@ -8,11 +8,22 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseService } from '../../../services/database.service';
 import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-project-settings',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    ButtonModule,
+    CardModule,
+    CommonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    TextareaModule,
+  ],
   templateUrl: './project-settings.component.html',
   styleUrl: './project-settings.component.css',
 })

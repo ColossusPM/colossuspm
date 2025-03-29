@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatabaseService, Project } from '../../services/database.service';
 import { CommonModule } from '@angular/common';
+import { MessageModule } from 'primeng/message';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ButtonModule, CardModule, CommonModule, MessageModule],
   templateUrl: './view-projects.component.html',
   styleUrl: './view-projects.component.css',
 })

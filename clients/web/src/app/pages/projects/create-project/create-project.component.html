@@ -1,40 +1,55 @@
-<div class="card shadow-sm rounded-4">
-  <div class="card-body">
-    <h2 class="card-title mb-4">Create New Project</h2>
+<div class="flex justify-content-center align-items-center h-screen">
+  <p-card class="border-round-xl w-30rem">
+    <ng-template pTemplate="header">
+      <h2 class="text-2xl font-semibold mb-3 pl-4 pt-2">
+        Create New Project
+      </h2>
+    </ng-template>
 
-    <form [formGroup]="form" (ngSubmit)="create()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Project Name</label>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="create()"
+      class="p-fluid px-5 pb-4 pt-2"
+    >
+      <div class="field mb-4">
+        <label for="name" class="block mb-2 font-medium">Project Name</label>
         <input
-          type="text"
+          pInputText
           id="name"
-          class="form-control"
+          type="text"
+          class="w-full"
           formControlName="name"
           placeholder="Enter project name"
-          required
+          [ngClass]="{
+            'p-invalid': form.get('name')?.invalid && form.get('name')?.touched
+          }"
         />
-        <div
-          *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
-          class="text-danger small"
-        >
-          Name is required.
-        </div>
+        @if (form.get('name')?.invalid && form.get('name')?.touched) {
+        <small class="p-error mt-2 block"> Project name is required. </small>
+        }
       </div>
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+      <div class="field mb-4">
+        <label for="description" class="block mb-2 font-medium"
+          >Description</label
+        >
         <textarea
+          pTextarea
           id="description"
-          class="form-control"
+          class="w-full"
           rows="4"
           formControlName="description"
           placeholder="Enter description"
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="form.invalid">
-        <i class="bi bi-plus-circle"></i> Create Project
-      </button>
+      <button
+        pButton
+        type="submit"
+        label="Create Project"
+        class="p-button-success w-full"
+        [disabled]="form.invalid"
+      ></button>
     </form>
-  </div>
+  </p-card>
 </div>
