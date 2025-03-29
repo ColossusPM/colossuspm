@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
   selector: 'app-index',
   imports: [CommonModule, RouterModule, ButtonModule],
   templateUrl: './index.component.html',
-  styleUrl: './index.component.css'
+  styleUrl: './index.component.css',
 })
-export class IndexComponent {
-}
+export class IndexComponent {}
