@@ -1,9 +1,0 @@
-[build]
-  base = "clients/web"
-  publish = "dist/web"
-  command = "ng build --configuration production"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
