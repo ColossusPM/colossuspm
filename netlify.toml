@@ -1,7 +1,7 @@
 [build]
   base = "clients/web"
   publish = "dist/web"
-  command = "npm run build -- --configuration production"
+  command = "ng build --configuration production --no-extract-css --no-inline-style"
 
 [[redirects]]
   from = "/*"
