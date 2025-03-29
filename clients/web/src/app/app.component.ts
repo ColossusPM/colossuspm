@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNG } from 'primeng/config';
-import { FooterComponent } from "./components/footer/footer.component";
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 export class AppComponent implements OnInit {
   constructor(private primeng: PrimeNG) {}
 
-    ngOnInit() {
-        this.primeng.ripple.set(true);
-    }
+  ngOnInit() {
+    this.primeng.ripple.set(true);
+  }
 }

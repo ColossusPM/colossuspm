@@ -1,28 +1,30 @@
-<div class="flex gap-4">
+<div class="kanban-container">
   <div
+    class="lane-container"
     *ngFor="let lane of lanes"
-    class="flex-1 flex flex-col gap-2 bg-gray-50 rounded-lg p-3 shadow lane-droppable"
-    [ngClass]="{ 'drag-over': isDragOver === lane.status }"
     pDroppable
     [pDroppableDisabled]="!!editTask"
     (onDrop)="onDrop($event, lane.status)"
     (onDragEnter)="onDragEnter(lane.status)"
     (onDragLeave)="onDragLeave()"
+    [ngClass]="{ 'drag-over': isDragOver === lane.status }"
   >
-    <h3 class="m-0 text-lg font-semibold capitalize">{{ lane.name }}</h3>
+    <div class="lane-header">
+      <h3>{{ lane.name }}</h3>
+    </div>
 
-    <div class="flex-1 min-h-4rem" *ngIf="!editTask">
+    <div class="task-list">
       <div
         *ngFor="let task of getTasksByStatus(lane.status)"
-        class="p-2 mb-2 bg-white rounded shadow cursor-move flex justify-between items-center task-draggable"
-        [ngClass]="{ dragging: draggedTask?.id === task.id }"
+        class="task-item"
         pDraggable
         [pDraggableDisabled]="!!editTask"
         (dragstart)="onDragStart($event, task)"
         (dragend)="onDragEnd()"
+        [ngClass]="{ dragging: draggedTask?.id === task.id }"
       >
         <span>{{ task.title }}</span>
-        <div class="flex gap-1">
+        <div class="task-actions">
           <button
             pButton
             icon="pi pi-pencil"
@@ -37,47 +39,43 @@
           ></button>
         </div>
       </div>
-    </div>
 
-    @if (editTask && editTask.status === lane.status) {
-    <div class="flex gap-2 items-center">
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="editTask.title"
-        class="flex-1"
-        placeholder="Edit task title"
-      />
-      <button
-        pButton
-        icon="pi pi-check"
-        class="p-button-success p-button-sm"
-        (click)="saveEdit()"
-      ></button>
-      <button
-        pButton
-        icon="pi pi-times"
-        class="p-button-text p-button-sm"
-        (click)="cancelEdit()"
-      ></button>
-    </div>
-    }
+      <div *ngIf="editTask && editTask.status === lane.status" class="edit-task-input">
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="editTask.title"
+          placeholder="Edit task title"
+        />
+        <button
+          pButton
+          icon="pi pi-check"
+          class="p-button-success p-button-sm"
+          (click)="saveEdit()"
+        ></button>
+        <button
+          pButton
+          icon="pi pi-times"
+          class="p-button-text p-button-sm"
+          (click)="cancelEdit()"
+        ></button>
+      </div>
 
-    <div class="flex gap-2 mt-2">
-      <input
-        type="text"
-        pInputText
-        [(ngModel)]="newTaskTitle[lane.status]"
-        class="flex-1"
-        placeholder="Add new task"
-        (keyup.enter)="createTask(lane.status)"
-      />
-      <button
-        pButton
-        icon="pi pi-plus"
-        class="p-button-sm"
-        (click)="createTask(lane.status)"
-      ></button>
+      <div class="add-task-input">
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="newTaskTitle[lane.status]"
+          placeholder="Add new task"
+          (keyup.enter)="createTask(lane.status)"
+        />
+        <button
+          pButton
+          icon="pi pi-plus"
+          class="p-button-sm"
+          (click)="createTask(lane.status)"
+        ></button>
+      </div>
     </div>
   </div>
 </div>
