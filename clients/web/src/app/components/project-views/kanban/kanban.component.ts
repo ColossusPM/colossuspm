@@ -7,11 +7,12 @@ import { CardModule } from 'primeng/card';
 import { DragDropModule } from 'primeng/dragdrop';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 
 @Component({
   selector: 'app-kanban',
   standalone: true,
-  imports: [CardModule, CommonModule, FormsModule, DragDropModule, InputTextModule, ButtonModule],
+  imports: [CardModule, CommonModule, FormsModule, DragDropModule, InputTextModule, ButtonModule, CalendarModule],
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css'],
 })
@@ -26,6 +27,7 @@ export class KanbanComponent implements OnInit {
   draggedTask?: Task;
   editTask: Task | null = null;
   newTaskTitle: Record<string, string> = {};
+  newTaskDeadline: Record<string, Date | null> = {};
   isDragOver: string | null = null;
 
   constructor(private _databaseService: DatabaseService) {}
@@ -50,9 +52,11 @@ export class KanbanComponent implements OnInit {
       title: this.newTaskTitle[status].trim(),
       status: status as any,
       createdAt: new Date(),
+      deadline: this.newTaskDeadline[status] || undefined,
     };
     await this._databaseService.createTask(task);
     this.newTaskTitle[status] = '';
+    this.newTaskDeadline[status] = null;
     await this.loadTasks();
   }
 

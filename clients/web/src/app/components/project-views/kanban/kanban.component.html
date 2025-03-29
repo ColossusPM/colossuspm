@@ -24,6 +24,7 @@
         [ngClass]="{ dragging: draggedTask?.id === task.id }"
       >
         <span>{{ task.title }}</span>
+          <span *ngIf="task.deadline">{{ task.deadline | date }}</span>
         <div class="task-actions">
           <button
             pButton
@@ -47,6 +48,7 @@
           [(ngModel)]="editTask.title"
           placeholder="Edit task title"
         />
+        <p-calendar [(ngModel)]="editTask.deadline" placeholder="Edit deadline"></p-calendar>
         <button
           pButton
           icon="pi pi-check"
@@ -69,6 +71,7 @@
           placeholder="Add new task"
           (keyup.enter)="createTask(lane.status)"
         />
+        <p-calendar [(ngModel)]="newTaskDeadline[lane.status]" placeholder="Deadline"></p-calendar>
         <button
           pButton
           icon="pi pi-plus"

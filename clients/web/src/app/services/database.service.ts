@@ -15,6 +15,7 @@ export interface Task {
   description?: string;
   status: 'todo' | 'in-progress' | 'done';
   createdAt: Date;
+  deadline?: Date; // Added deadline field
 }
 
 @Injectable({
@@ -27,9 +28,10 @@ export class DatabaseService extends Dexie {
   constructor() {
     super('colossuspm');
 
-    this.version(2).stores({
+    this.version(3).stores({
+      // Increment version
       projects: 'id, name, createdAt',
-      tasks: 'id, projectId, title, status, createdAt',
+      tasks: 'id, projectId, title, status, createdAt, deadline', // Added deadline to index
     });
 
     this.projects = this.table('projects');
