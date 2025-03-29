@@ -49,6 +49,14 @@
           class="p-button-primary w-full"
           [disabled]="form.invalid"
         ></button>
+
+        <button
+          pButton
+          type="button"
+          label="Delete Project"
+          class="p-button-danger w-full mt-4"
+          (click)="deleteProject()"
+        ></button>
       </form>
     }
   </p-card>

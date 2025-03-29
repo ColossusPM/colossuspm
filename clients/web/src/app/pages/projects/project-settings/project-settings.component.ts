@@ -74,6 +74,13 @@ export class ProjectSettingsComponent implements OnInit {
       createdAt: new Date(), // You can keep createdAt immutable if you want
     });
 
-    this._router.navigate(['/']);
+    this._router.navigate(['projects']);
+  }
+
+  async deleteProject() {
+    if (confirm('Are you sure you want to delete this project?')) {
+      await this._databaseService.deleteProject(this.projectId);
+      this._router.navigate(['projects']);
+    }
   }
 }

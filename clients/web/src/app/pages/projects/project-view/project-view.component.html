@@ -1,7 +1,18 @@
 <div class="p-4" *ngIf="projectFound">
-  <h2 class="mb-4">{{ projectName }}</h2>
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="m-0">{{ projectName }}</h2>
+    <div>
+      <button pButton icon="pi pi-pencil" class="p-button-sm p-button-text" (click)="editProjectName()"></button>
+      <button pButton icon="pi pi-cog" class="p-button-sm p-button-text" (click)="goToSettings()"></button>
+    </div>
+  </div>
 
-  <!-- Kanban Board -->
+  <div *ngIf="isEditingName" class="flex gap-2 mb-4">
+    <input type="text" pInputText [(ngModel)]="newProjectName" placeholder="New Project Name" class="flex-1" />
+    <button pButton icon="pi pi-check" class="p-button-success p-button-sm" (click)="saveProjectName()"></button>
+    <button pButton icon="pi pi-times" class="p-button-text p-button-sm" (click)="cancelEditName()"></button>
+  </div>
+
   <app-kanban [projectId]="projectId"></app-kanban>
 </div>
 
