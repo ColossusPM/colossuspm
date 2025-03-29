@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DatabaseService } from '../../../services/database.service';
 import { CommonModule } from '@angular/common';
+import { KanbanComponent } from '../../../components/project-views/kanban/kanban.component';
 
 @Component({
   selector: 'app-project-view',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, KanbanComponent],
   templateUrl: './project-view.component.html',
   styleUrls: ['./project-view.component.css'],
 })

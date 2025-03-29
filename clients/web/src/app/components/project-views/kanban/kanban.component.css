@@ -1,0 +1,22 @@
+/* kanban.component.scss */
+.lane-droppable {
+    transition: background-color 0.3s;
+  }
+  
+  .lane-droppable.drag-over {
+    background-color: #e0f7fa; /* light cyan highlight */
+  }
+  
+  .task-draggable {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .task-draggable:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  .task-draggable.dragging {
+    opacity: 0.7;
+  }
+  

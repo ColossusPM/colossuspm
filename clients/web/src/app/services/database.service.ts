@@ -12,7 +12,9 @@ export interface Task {
   id: string;
   projectId: string;
   title: string;
-  completed: boolean;
+  description?: string;
+  status: 'todo' | 'in-progress' | 'done';
+  createdAt: Date;
 }
 
 @Injectable({
@@ -25,9 +27,9 @@ export class DatabaseService extends Dexie {
   constructor() {
     super('colossuspm');
 
-    this.version(1).stores({
+    this.version(2).stores({
       projects: 'id, name, createdAt',
-      tasks: 'id, projectId, title, completed',
+      tasks: 'id, projectId, title, status, createdAt',
     });
 
     this.projects = this.table('projects');
