@@ -1,0 +1,9 @@
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
