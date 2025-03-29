@@ -1,6 +1,6 @@
 [build]
   base = "clients/web"
-  publish = "clients/web/dist/web"
+  publish = "dist/web"
   command = "npm run build -- --configuration production"
 
 [[redirects]]
