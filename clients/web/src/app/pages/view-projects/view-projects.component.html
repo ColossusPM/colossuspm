@@ -1,36 +1,38 @@
-<div class="flex justify-content-between align-items-center mb-4">
-  <h2 class="text-2xl font-medium">All Projects</h2>
-  <p-button
-    label="New Project"
-    severity="success"
-    (click)="createProject()"
-  ></p-button>
-</div>
+<div class="px-3 md:px-6 lg:px-8 xl:px-10">
+  <div class="flex justify-content-between align-items-center mb-4">
+    <h2 class="text-2xl font-medium">All Projects</h2>
+    <p-button
+      label="New Project"
+      severity="success"
+      (click)="createProject()"
+    ></p-button>
+  </div>
 
-@if (projects.length === 0) {
-<p-message
-  severity="info"
-  text='No projects found. Click "New Project" to get started.'
-  class="w-full"
-></p-message>
-} @if (projects.length > 0) {
-<div class="flex flex-column gap-3 mt-3">
-  <p-card *ngFor="let project of projects" class="border-round-xl">
-    <ng-template pTemplate="header">
-      <div
-        class="flex justify-content-between align-items-center pr-4 pl-4 pt-4"
-      >
-        <h5 class="m-0 text-xl">
-          {{ project.name || "Untitled Project" }}
-        </h5>
-        <p-button
-          icon="pi pi-arrow-right"
-          class="p-button-sm"
-          severity="info"
-          (click)="openProject(project)"
-        ></p-button>
-      </div>
-    </ng-template>
-  </p-card>
+  @if (projects.length === 0) {
+  <p-message
+    severity="info"
+    text='No projects found. Click "New Project" to get started.'
+    class="w-full"
+  ></p-message>
+  } @if (projects.length > 0) {
+  <div class="flex flex-column gap-3 mt-3">
+    <p-card *ngFor="let project of projects" class="border-round-xl">
+      <ng-template pTemplate="header">
+        <div
+          class="flex justify-content-between align-items-center pr-4 pl-4 pt-4"
+        >
+          <h5 class="m-0 text-xl">
+            {{ project.name || "Untitled Project" }}
+          </h5>
+          <p-button
+            icon="pi pi-arrow-right"
+            class="p-button-sm"
+            severity="info"
+            (click)="openProject(project)"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+  }
 </div>
-}
